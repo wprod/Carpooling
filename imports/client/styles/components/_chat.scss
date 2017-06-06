@@ -1,0 +1,12 @@
+.history {
+    max-height: 18rem;
+    overflow: auto;
+    margin-bottom: 1rem;
+    p,em{
+        display: inline-block;
+        margin: .3rem 1rem .3rem 0;
+    }
+    p.name {
+        color: blue;
+    }
+}
