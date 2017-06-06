@@ -6,7 +6,7 @@ const PrivateHeader = (props) => {
     return (
         <div className="privateHeader">
             <h1><a href="/covoits">{props.title}</a></h1>
-            <button onClick={() => Accounts.logout()}>Logout</button>
+            <a className="link" href="/" onClick={() => Accounts.logout()}>Logout</a>
         </div>
     );
 }

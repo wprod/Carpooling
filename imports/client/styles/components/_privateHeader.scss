@@ -1,12 +1,12 @@
 .privateHeader{
-    button {
+    a.link{
         border-radius: 0;
         color: red;
         border: 1px solid red;
         background-image: linear-gradient(to right, transparent 50%, red 50%);
         float: right
     }
-    h1, button {
+    h1, a.link {
         display: inline;
     }
 }

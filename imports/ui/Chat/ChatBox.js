@@ -1,6 +1,7 @@
 import React from 'react';
 import {Meteor} from 'meteor/meteor';
 import {Covoits} from './../../api/covoits';
+import FlipMove from 'react-flip-move';
 
 import Message from './Message';
 
@@ -52,9 +53,9 @@ export default class ChatBox extends React.Component {
         return (
             <div>
                 <h4>Lets chat !</h4>
-                <div className="history">
+                <FlipMove className="history">
                     {this.renderCovoitsMessages()}
-                </div>
+                </FlipMove>
                 <form
                     onSubmit={this
                     .onSubmit

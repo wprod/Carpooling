@@ -8,6 +8,7 @@ import Covoit from '../ui/Covoit';
 import NotFound from '../ui/NotFound';
 import Login from '../ui/Login';
 import CovoitSingle from '../ui/CovoitSingle/CovoitSingle';
+import CovoitSingleAdmin from '../ui/CovoitSingle/CovoitSingleAdmin';
 
 const unauthenticatedPages = ['/', '/signup'];
 const authenticatedPages = ['/covoits'];
@@ -23,9 +24,7 @@ const onEnterPrivatePage = () => {
     }
 };
 export const onAuthChange = (isAuthenticated) => {
-    const pathname = browserHistory
-        .getCurrentLocation()
-        .pathname;
+    const pathname = browserHistory.getCurrentLocation().pathname;
     const isUnauthenticatedPage = unauthenticatedPages.includes(pathname);
     const isAuthenticatedPage = authenticatedPages.includes(pathname);
 
@@ -42,6 +41,7 @@ export const routes = (
         <Route path="/signup" component={Signup} onEnter={onEnterPublicPage}/>
         <Route path="/covoits" component={Covoit} onEnter={onEnterPrivatePage}/>
         <Route path="/travels/:id" component={CovoitSingle} onEnter={onEnterPrivatePage}/>
+        <Route path="/travels/:id/admin" component={CovoitSingleAdmin} onEnter={onEnterPrivatePage}/>
         <Route path="*" component={NotFound}/>
     </Router>
 );

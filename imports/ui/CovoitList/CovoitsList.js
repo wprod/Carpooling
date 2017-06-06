@@ -7,50 +7,55 @@ import {Covoits} from '../../api/covoits';
 import CovoitsListItem from './CovoitsListItem';
 
 export default class CovoitsList extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            covoits:[]
+            covoits: []
         }
     };
 
-    componentDidMount(){
+    componentDidMount() {
         console.log("componentDidMount from covoit page");
         this.CovoitsTracker = Tracker.autorun(() => {
             Meteor.subscribe('covoits');
-            const covoits = Covoits.find().fetch();
+            const covoits = Covoits
+                .find()
+                .fetch();
             this.setState({covoits});
         });
     };
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         console.log("componentWillUnmount from covoit page")
-        this.CovoitsTracker.stop();
+        this
+            .CovoitsTracker
+            .stop();
     };
 
     renderCovoitsListItems() {
-        return this.state.covoits.map( (covoit) => {
-            return (
-                <CovoitsListItem 
-                userId={covoit.userId}
-                covoitId={covoit._id} 
-                key={covoit._id} 
-                from={covoit.from} 
-                to={covoit.to} 
-                availablePlaces={covoit.availablePlaces} 
-                comments={covoit.comments}
-                active= {covoit.active}/>
-            );
-        })
+        return this
+            .state
+            .covoits
+            .map((covoit) => {
+                return (<CovoitsListItem
+                    userId={covoit.userId}
+                    covoitId={covoit._id}
+                    key={covoit._id}
+                    from={covoit.from}
+                    to={covoit.to}
+                    availablePlaces={covoit.availablePlaces}
+                    comments={covoit.comments}
+                    active={covoit.active}/>);
+            })
     };
 
-    render(){
-        return(
-            <FlipMove>
-                <div className="covoitList">
+    render() {
+        return (
+            <div>
+                <FlipMove className="covoitList">
                     {this.renderCovoitsListItems()}
-                </div>
-            </FlipMove>
+                </FlipMove>
+            </div>
         );
     };
 }

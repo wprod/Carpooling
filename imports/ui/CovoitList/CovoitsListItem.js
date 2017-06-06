@@ -23,7 +23,7 @@ export default class CovoitsListItems extends React.Component {
                         <span></span>
                     )
                     : (
-                        <a className="link admin" href={'/travels/' + this.props.covoitId}>Administration</a>
+                        <a className="link admin" href={'/travels/' + this.props.covoitId + '/admin'}>Administration</a>
                     )
 }
 

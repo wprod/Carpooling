@@ -50,7 +50,6 @@ export default class CovoitSingle extends React.Component {
         return (
             <div>
                 <PrivateHeader title="Your travel"/>
-                <a className="back" href="/covoits">Back to the list</a>
                 <div>
                     {this.renderCovoitsListItems()}
                 </div>
