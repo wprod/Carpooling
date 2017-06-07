@@ -10,11 +10,10 @@ export default class CovoitsListItems extends React.Component {
     render() {
         return (
             <div className="covoitSingle">
-                <h3>{this.props.from}→{this.props.to}</h3>
-                <p>{this
-                        .props
-                        .active
-                        .toString()}</p>
+                <div className="header">
+                    <span className="label">{this.props.active ? "Active" : "Disabeled" }</span><br/>
+                    <h3>{this.props.from}→{this.props.to}</h3>
+                </div>
                 <em>Places avalible : {this.props.availablePlaces}</em>
                 <p>{this.props.comments}</p>
             </div>

@@ -1,0 +1,6 @@
+$fontColor : #4e4e4e;
+
+@mixin boxShadow {
+    box-shadow: 1px 5px 23px #cccccc;
+    border: 1px solid #c3c3c3;
+}

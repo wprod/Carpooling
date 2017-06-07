@@ -5,18 +5,49 @@
 
 .covoit {
     border-radius: 5px;
-    border: 1px solid #dccdcd;
     padding: 1rem;
     margin: 1rem 1rem 0 0;
+    background: #fdfdfd;
+    box-shadow:1px 5px 10px #e4e4e4;
+    border: 1px solid #dccdcd;
+
+    h3 {
+        margin: -20px 0 0 0;
+    }
+
+
+    p {
+        margin: .5rem 0
+    }
+    a.display {
+        margin-right: 1rem;
+    }
+    a.admin {
+        color: purple;
+        border: 1px solid purple;
+        background-image: linear-gradient(to right, transparent 50%, purple 50%);
+    }
+    a.admin:hover {
+        color:rgba(255, 255, 255, 1);
+	    background-color:purple;
+    }
+    em {
+        display: inline-block
+    }
+
+}
+
+.covoitSingle {
+    border-radius: 5px;
+    border: 1px solid #dccdcd;
+    padding: 1rem;
+    margin: 1rem 0;
     background: #fdfdfd;
     h3 {
         margin: 0;
     }
     p {
         margin: .5rem 0
-    }
-    a.display {
-        margin-right: 1rem;
     }
     a.display {
         margin-right: 1rem;

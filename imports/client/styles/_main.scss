@@ -3,11 +3,14 @@
 @import "components/_covoitSingle";
 @import "components/_privateHeader";
 @import "components/_addCovoit";
+@import "components/_searchBox";
+@import "modules/_colors";
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600);
 
 *{
     font-family: 'Open Sans', sans-serif;
     box-sizing: border-box;
+    color: $fontColor;
 }
 
 html{

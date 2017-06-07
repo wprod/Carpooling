@@ -6,6 +6,10 @@
         background-image: linear-gradient(to right, transparent 50%, red 50%);
         float: right
     }
+    a.link:hover {
+        background-color: red;
+    }
+ 
     h1, a.link {
         display: inline;
     }

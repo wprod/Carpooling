@@ -4,10 +4,15 @@
     background: #edf4f9;
     padding: 3%;
     border-radius: 5px;
-    border: 1px solid #d6d6ff;
     margin-top: 1rem;
+    box-shadow:1px 5px 10px #e4e4e4;
+    border: 1px solid #dccdcd;
+    
     label {
         display: block;
         margin: .5rem 0;
+    }
+    h2 {
+        margin: 0rem 0 1.5rem 0;
     }
 }

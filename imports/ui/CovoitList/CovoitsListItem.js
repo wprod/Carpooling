@@ -10,12 +10,11 @@ export default class CovoitsListItems extends React.Component {
     render() {
         return (
             <div className="link covoit">
-                <h3>{this.props.from}→{this.props.to}</h3>
-                <p>{this
-                        .props
-                        .active
-                        .toString()}</p>
-                <em>Places avalible : {this.props.availablePlaces}</em>
+                <div className="header">
+                    <span className="label">{this.props.active ? "Active" : "Disabeled" }</span><br/>
+                    <h3>{this.props.from}→{this.props.to}</h3>
+                </div>
+                <em>Places avalible : <span className="puce">{this.props.availablePlaces}</span></em>
                 <p>{this.props.comments}</p>
                 <a className="link display" href={'/travels/' + this.props.covoitId}>Visit travel page</a>
                 {Meteor.userId() != this.props.userId

@@ -1,25 +1,22 @@
-.covoitSingle {
-    border-radius: 5px;
-    border: 1px solid #dccdcd;
-    padding: 1rem;
-    margin: 1rem 0;
-    background: #fdfdfd;
-    h3 {
-        margin: 0;
+    .label {
+        float: right;
+        background: #1cbe83;
+        padding: .2rem .6rem;
+        color: white;
+        font-weight: bolder
     }
-    p {
-        margin: .5rem 0
+    .puce{
+        padding: .1rem .65rem .1rem .4rem;
+        background: #6cafde;
+        border-radius: 122%;
+        color: white;
+        width: 2rem;
+        height: 2rem;
+        margin: 0rem;
+        font-weight: bolder;
+        margin-left: .3rem;
+        line-height: 2rem;
     }
-    a.display {
-        margin-right: 1rem;
+    .header {
+        margin-bottom: 1rem;
     }
-    a.admin {
-        color: purple;
-        border: 1px solid purple;
-        background-image: linear-gradient(to right, transparent 50%, purple 50%);
-    }
-    a.admin:hover {
-        color:rgba(255, 255, 255, 1);
-	    background-color:purple;
-    }
-}
