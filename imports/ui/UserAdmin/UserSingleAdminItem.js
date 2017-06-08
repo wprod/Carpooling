@@ -19,8 +19,6 @@ export default class CovoitsListItems extends React.Component {
         console.log(this.props.userId);
         //Calling our secured method to add data to db :
         Meteor.call('covoits.update', active, date, from, to, availablePlaces, comments, price, this.props.userId, this.props.covoitId);
-
-       
     }
 
     render() {

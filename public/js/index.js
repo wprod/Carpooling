@@ -5,7 +5,7 @@ var Colors = {
 	brown:0x59332e,
 	pink:0xF5986E,
 	brownDark:0x23190f,
-	blue: 0x68a53b,
+	blue: 0x257950,
 };
 
 window.addEventListener('load', init, false);
@@ -20,7 +20,7 @@ function init(e) {
 	// add the objects
 	createPlane();
 	createearth();
-	//createSky();
+	createSky();
   
   // follow mouse
   document.addEventListener('mousemove', handleMouseMove, false);
@@ -73,9 +73,7 @@ function createScene() {
 		// we defined in the CSS
 		alpha: true, 
 
-		// Activate the anti-aliasing; this is less performant,
-		// but, as our project is low-poly based, it should be fine :)
-		antialias: false 
+		antialias: true 
 	});
   
   renderer.setSize(WIDTH, HEIGHT);
@@ -160,7 +158,7 @@ earth = function () {
   var mat = new THREE.MeshPhongMaterial({
     color: Colors.blue,
     transparent: true,
-    opacity: 0.6,
+    opacity: 1,
     shading: THREE.FlatShading
   });
   
@@ -192,7 +190,6 @@ Cloud = function () {
     shading: THREE.FlatShading
   });
   
-  // dupe it a few times
   var nBlocks = 3+Math.floor(Math.random()*3);
   for (var i = 0; i < nBlocks; i++) {
     var m = new THREE.Mesh(geom, mat);
@@ -232,7 +229,7 @@ Sky = function () {
     c.mesh.rotation.z = a + Math.PI/2;
     c.mesh.position.z = -400-Math.random()*400;
     
-    var s = 1+Math.random()*2;
+    var s = 1+Math.random()*4;
     c.mesh.scale.set(s,s,s);
     
     this.mesh.add(c.mesh);
@@ -330,7 +327,7 @@ var AirPlane = function () {
   this.mesh.add(tailPlane);
   
   // wing
-  var geomSideWing = new THREE.BoxGeometry(40,2,390,1,1,1);
+  var geomSideWing = new THREE.BoxGeometry(40,2,190,1,1,1);
   var matSideWing = new THREE.MeshPhongMaterial({
     color: Colors.red,
     shading: THREE.FlatShading
@@ -406,7 +403,7 @@ function createPlane() {
 function loop () {
   airplane.prop.rotation.x += .3;
   earth.mesh.rotation.z += 0.005;
-  //sky.mesh.rotation.z += 0.01;
+  sky.mesh.rotation.z += 0.001;
   
   // update the plane
   updatePlane();

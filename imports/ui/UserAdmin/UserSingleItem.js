@@ -11,8 +11,10 @@ export default class CovoitsListItems extends React.Component {
         return (
             <div className="covoitSingle">
                 <div className="header">
-                    <span className="label">{this.props.active ? "Active" : "Disabeled" }</span><br/>
-                    <h3>{this.props.from}→{this.props.to}</h3>
+                    {this.props.active
+                        ? <span className="label">Active</span>
+                        : <span className="label disabeled">Disabeled</span>}
+                    <h3>{this.props.from} → {this.props.to}</h3>
                 </div>
                 <em>Places avalible : <span className="puce">{this.props.availablePlaces}</span></em><br/>
                 <em>Price : <span className="puce orange">{this.props.price}</span> €</em>
