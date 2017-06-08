@@ -38,9 +38,11 @@ export default class CovoitSingle extends React.Component {
                 return (<CovoitSingleItem
                     userId={covoit.userId}
                     covoitId={covoit._id}
+                    covoitId={covoit.date}
                     key={covoit._id}
                     from={covoit.from}
                     to={covoit.to}
+                    price={covoit.price}
                     availablePlaces={covoit.availablePlaces}
                     comments={covoit.comments}
                     active={covoit.active}/>);

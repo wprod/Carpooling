@@ -3,7 +3,11 @@
         background: #1cbe83;
         padding: .2rem .6rem;
         color: white;
-        font-weight: bolder
+        font-weight: bolder;
+        border-radius: .3rem;
+    }
+    .label.disabeled {
+        background: red;
     }
     .puce{
         padding: .1rem .65rem .1rem .4rem;
@@ -17,6 +21,9 @@
         margin-left: .3rem;
         line-height: 2rem;
     }
+    .puce.orange{
+        background: #ffc760;
+    }
     .header {
-        margin-bottom: 1rem;
+        margin: 1rem 0;
     }

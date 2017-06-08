@@ -4,10 +4,22 @@
         color: red;
         border: 1px solid red;
         background-image: linear-gradient(to right, transparent 50%, red 50%);
-        float: right
+        float: right;
     }
     a.link:hover {
         background-color: red;
+    }
+    a.link.admin{
+        border-radius: 0;
+        color: purple;
+        border: 1px solid purple;
+        background-image: linear-gradient(to right, transparent 50%, purple 50%);
+        float: right;
+        margin-right: 1rem;
+    }
+    a.link.admin:hover {
+        background-color: purple;
+        color: white;
     }
  
     h1, a.link {

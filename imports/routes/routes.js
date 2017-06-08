@@ -9,6 +9,7 @@ import NotFound from '../ui/NotFound';
 import Login from '../ui/Login';
 import CovoitSingle from '../ui/CovoitSingle/CovoitSingle';
 import CovoitSingleAdmin from '../ui/CovoitSingle/CovoitSingleAdmin';
+import UserSingleAdmin from '../ui/UserAdmin/UserSingleAdmin';
 
 const unauthenticatedPages = ['/', '/signup'];
 const authenticatedPages = ['/covoits'];
@@ -42,6 +43,7 @@ export const routes = (
         <Route path="/covoits" component={Covoit} onEnter={onEnterPrivatePage}/>
         <Route path="/travels/:id" component={CovoitSingle} onEnter={onEnterPrivatePage}/>
         <Route path="/travels/:id/admin" component={CovoitSingleAdmin} onEnter={onEnterPrivatePage}/>
+        <Route path="/user/:id/admin" component={UserSingleAdmin} onEnter={onEnterPrivatePage}/>
         <Route path="*" component={NotFound}/>
     </Router>
 );

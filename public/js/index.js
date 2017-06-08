@@ -1,11 +1,11 @@
 
 var Colors = {
-	red:0xf25346,
+	red:0x466fbf,
 	white:0xd8d0d1,
 	brown:0x59332e,
 	pink:0xF5986E,
 	brownDark:0x23190f,
-	blue:0x68c3c0,
+	blue: 0x68a53b,
 };
 
 window.addEventListener('load', init, false);
@@ -19,8 +19,8 @@ function init(e) {
 
 	// add the objects
 	createPlane();
-	createSea();
-	createSky();
+	createearth();
+	//createSky();
   
   // follow mouse
   document.addEventListener('mousemove', handleMouseMove, false);
@@ -54,7 +54,7 @@ function createScene() {
   aspectRatio = WIDTH / HEIGHT;
 	fieldOfView = 60;
 	nearPlane = 1;
-	farPlane = 10000;
+	farPlane = 1000;
   
   camera = new THREE.PerspectiveCamera(
 		fieldOfView,
@@ -65,7 +65,7 @@ function createScene() {
   
   camera.position.x = 0;
 	camera.position.z = 200;
-	camera.position.y = 100;
+	camera.position.y = 50;
   
   // Renderer creation
   renderer = new THREE.WebGLRenderer({ 
@@ -75,7 +75,7 @@ function createScene() {
 
 		// Activate the anti-aliasing; this is less performant,
 		// but, as our project is low-poly based, it should be fine :)
-		antialias: true 
+		antialias: false 
 	});
   
   renderer.setSize(WIDTH, HEIGHT);
@@ -132,7 +132,7 @@ function createLights() {
   scene.add(ambientLight);
 }
 
-Sea = function () {
+earth = function () {
   var geom = new THREE.CylinderGeometry(600, 600, 800, 40, 10);
   
   //rotate that bad boy
@@ -169,31 +169,15 @@ Sea = function () {
   this.mesh.receiveShadow = true;
 }
 
-Sea.prototype.moveWaves = function () {
-  var verts = this.mesh.geometry.vertices;
-  var l = verts.length;
-  
-  for (var i=0; i<l; i++) {
-    var v = verts[i];
-    var vprops = this.waves[i];
-    
-    v.x = vprops.x + Math.cos(vprops.ang) * vprops.amp;
-    v.y = vprops.y + Math.sin(vprops.ang) * vprops.amp;
-    
-    vprops.ang += vprops.speed;
-  }
-  
-  this.mesh.geometry.verticesNeedUpdate=true;
-}
 
-var sea;
+var earth;
 
-function createSea() {
-  sea = new Sea();
+function createearth() {
+  earth = new earth();
   
-  sea.mesh.position.y = -600;
+  earth.mesh.position.y = -600;
   
-  scene.add(sea.mesh);
+  scene.add(earth.mesh);
 }
 
 Cloud = function () {
@@ -268,7 +252,7 @@ var AirPlane = function () {
   this.mesh = new THREE.Object3D();
   
   // cabin
-  var geomCockpit = new THREE.BoxGeometry(60,50,50,1,1,1);
+  var geomCockpit = new THREE.BoxGeometry(120,40,40,1,1,1);
   var matCockpit = new THREE.MeshPhongMaterial({
     color: Colors.red,
     shading: THREE.FlatShading
@@ -300,11 +284,11 @@ var AirPlane = function () {
   ws.castShadow = true;
   ws.receiveShadow = true;
   ws.rotation.z = 0.25;
-  ws.position.set(28, 35, 0);
+  ws.position.set(57, 30, 0);
   this.mesh.add(ws);
  
   // engine
-  var geomEngine = new THREE.BoxGeometry(20,50,50,1,1,1);
+  var geomEngine = new THREE.BoxGeometry(20,40,40,1,1,1);
   var matEngine = new THREE.MeshPhongMaterial({
     color: Colors.white,
     shading: THREE.flatShading
@@ -324,13 +308,13 @@ var AirPlane = function () {
   geomEngine.vertices[3].z += 5;
   
   var engine = new THREE.Mesh(geomEngine, matEngine);
-  engine.position.x = 40;
+  engine.position.x = 70;
   engine.castShadow = true;
   engine.receiveShadow = true;
   this.mesh.add(engine);
   
   // tail
-  var geomTailPlane = new THREE.BoxGeometry(20,40,5,1,1,1);
+  var geomTailPlane = new THREE.BoxGeometry(20,40,3,1,1,1);
   var matTailPlane = new THREE.MeshPhongMaterial({
     color: Colors.red,
     shading: THREE.FlatShading
@@ -340,13 +324,13 @@ var AirPlane = function () {
   geomTailPlane.vertices[1].x -= 10;
   
   var tailPlane = new THREE.Mesh(geomTailPlane, matTailPlane);
-  tailPlane.position.set(-30,25,0);
+  tailPlane.position.set(-50,30,0);
   tailPlane.castShadow = true;
   tailPlane.receiveShadow = true;
   this.mesh.add(tailPlane);
   
   // wing
-  var geomSideWing = new THREE.BoxGeometry(40,8,150,1,1,1);
+  var geomSideWing = new THREE.BoxGeometry(40,2,390,1,1,1);
   var matSideWing = new THREE.MeshPhongMaterial({
     color: Colors.red,
     shading: THREE.FlatShading
@@ -365,7 +349,7 @@ var AirPlane = function () {
   this.mesh.add(sideWing);
   
   // tail wing
-  var geomTailWing = new THREE.BoxGeometry(20,4,55,1,1,1);
+  var geomTailWing = new THREE.BoxGeometry(20,1,55,1,1,1);
   var matTailWing = new THREE.MeshPhongMaterial({
     color: Colors.red,
     shading: THREE.FlatShading
@@ -379,7 +363,7 @@ var AirPlane = function () {
   geomTailWing.vertices[2].z -= 5;
   geomTailWing.vertices[1].z += 5;
   
-  tailWing.position.set(-35,0,0);
+  tailWing.position.set(-50,10,0);
   this.mesh.add(tailWing);
   
   // prop
@@ -403,7 +387,7 @@ var AirPlane = function () {
   blade.castShadow = true;
   blade.receiveShadow = true;
   this.prop.add(blade);
-  this.prop.position.set(55,0,0);
+  this.prop.position.set(85,0,0);
   this.mesh.add(this.prop);
 }
 
@@ -420,13 +404,12 @@ function createPlane() {
 // Animation 
 
 function loop () {
-  airplane.prop.rotation.x += 0.3;
-  sea.mesh.rotation.z += 0.005;
-  sky.mesh.rotation.z += 0.01;
+  airplane.prop.rotation.x += .3;
+  earth.mesh.rotation.z += 0.005;
+  //sky.mesh.rotation.z += 0.01;
   
   // update the plane
   updatePlane();
-  sea.moveWaves();
   
   renderer.render(scene, camera);
   requestAnimationFrame(loop);
@@ -459,7 +442,7 @@ function updatePlane () {
   airplane.mesh.position.x += (targetX-airplane.mesh.position.x)*0.1;
   
   // rotate the plane
-  airplane.mesh.rotation.z = (targetY-airplane.mesh.position.y)*0.0128;
+  airplane.mesh.rotation.z = (targetY-airplane.mesh.position.y)*0.128;
   airplane.mesh.rotation.z = (airplane.mesh.position.y-targetY)*0.0064;
   
 }
@@ -473,7 +456,7 @@ function normalize (v, vmin, vmax, tmin, tmax) {
   return tv;
 }
 
-// Sea = function () {
+// earth = function () {
 //   var geom = new THREE.CylinderGeometry(600,600,800,40,10);
 //   geom.applyMatrix(new THREE.Matrix4().makeRotationX(-Math.PI/2));
   

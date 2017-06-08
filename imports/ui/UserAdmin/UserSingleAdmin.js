@@ -1,60 +1,43 @@
-import React from "react";
+import React from 'react';
 import {Meteor} from 'meteor/meteor';
 import {Tracker} from 'meteor/tracker';
-import FlipMove from 'react-flip-move';
 
-import {Covoits} from '../../api/covoits';
-import CovoitsListItem from './CovoitsListItem';
-import SearchBox from './SerachBox'
+import {Covoits} from './../../api/covoits';
+import PrivateHeader from './../PrivateHeader';
+import UserSingleItem from './UserSingleItem';
 
-export default class CovoitsList extends React.Component {
+export default class UserSingle extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            covoits: [],
-            from:"",
-            to:""
+            covoits: []
         }
-        this.handleChangeFrom = this.handleChangeFrom.bind(this);
-        this.handleChangeTo = this.handleChangeTo.bind(this);
     };
     componentDidMount() {
         console.log("componentDidMount from covoit page");
         this.CovoitsTracker = Tracker.autorun(() => {
             Meteor.subscribe('covoits');
             const covoits = Covoits
-                .find()
+                .find({userId: this.props.params.id})
                 .fetch();
             this.setState({covoits});
         });
     };
-
     componentWillUnmount() {
         console.log("componentWillUnmount from covoit page")
         this
             .CovoitsTracker
             .stop();
     };
-
     renderCovoitsListItems() {
         return this
             .state
             .covoits
             .map((covoit) => {
-                if (covoit
-                .from
-                .toLowerCase()
-                .trim()
-                .startsWith(this.state.from.toLowerCase()) 
-                && 
-                covoit.to
-                .toLowerCase()
-                .trim()
-                .startsWith(this.state.to.toLowerCase())) {
-
-                return (<CovoitsListItem
+                return (<UserSingleItem
                     userId={covoit.userId}
                     covoitId={covoit._id}
+                    date={covoit.date}
                     key={covoit._id}
                     from={covoit.from}
                     to={covoit.to}
@@ -62,30 +45,15 @@ export default class CovoitsList extends React.Component {
                     availablePlaces={covoit.availablePlaces}
                     comments={covoit.comments}
                     active={covoit.active}/>);
-                    
-                };
             })
     };
-
-    handleChangeFrom(val){
-        this.setState({from: val});
-        console.log("From : ", this.state.from);
-
-    };
-
-    handleChangeTo(val){
-        this.setState({to: val});
-        console.log("To : ", this.state.to);
-
-    }
-
     render() {
         return (
             <div>
-                <SearchBox handleChangeFrom={this.handleChangeFrom} handleChangeTo={this.handleChangeTo} />
-                <FlipMove className="covoitList">
+                <PrivateHeader title="Admin"/>
+                <div>
                     {this.renderCovoitsListItems()}
-                </FlipMove>
+                </div>
             </div>
         );
     };

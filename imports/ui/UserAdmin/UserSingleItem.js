@@ -9,30 +9,16 @@ export default class CovoitsListItems extends React.Component {
 
     render() {
         return (
-            <div className="link covoit">
+            <div className="covoitSingle">
                 <div className="header">
-                    {this.props.active
-                        ? <span className="label">Active</span>
-                        : <span className="label disabeled">Disabeled</span>}
+                    <span className="label">{this.props.active ? "Active" : "Disabeled" }</span><br/>
                     <h3>{this.props.from}→{this.props.to}</h3>
                 </div>
-                <em>Places avalible :
-                    <span className="puce">{this.props.availablePlaces}</span>
-                </em><br/>
-                <em>Price :
-                    <span className="puce orange">{this.props.price}</span>
-                    €</em>
+                <em>Places avalible : <span className="puce">{this.props.availablePlaces}</span></em><br/>
+                <em>Price : <span className="puce orange">{this.props.price}</span> €</em>
                 <p>{this.props.comments}</p>
                 <a className="link display" href={'/travels/' + this.props.covoitId}>Visit travel page</a>
-                {Meteor.userId() != this.props.userId
-                    ? (
-                        <span></span>
-                    )
-                    : (
-                        <a className="link admin" href={'/travels/' + this.props.covoitId + '/admin'}>Administration</a>
-                    )
-}
-
+                <a className="link admin" href={'/travels/' + this.props.covoitId + '/admin'}>Administration</a>
             </div>
         );
     }

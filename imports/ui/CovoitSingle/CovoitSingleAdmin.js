@@ -4,8 +4,7 @@ import {Tracker} from 'meteor/tracker';
 
 import {Covoits} from './../../api/covoits';
 import PrivateHeader from './../PrivateHeader';
-import CovoitSingleItem from './CovoitSingleItem';
-import ChatBox from './../Chat/ChatBox';
+import CovoitSingleAdminItem from './CovoitSingleAdminItem';
 
 export default class CovoitSingle extends React.Component {
     constructor(props) {
@@ -35,12 +34,14 @@ export default class CovoitSingle extends React.Component {
             .state
             .covoits
             .map((covoit) => {
-                return (<CovoitSingleItem
+                return (<CovoitSingleAdminItem
                     userId={covoit.userId}
                     covoitId={covoit._id}
+                    date={covoit.date}
                     key={covoit._id}
                     from={covoit.from}
                     to={covoit.to}
+                    price={covoit.price}
                     availablePlaces={covoit.availablePlaces}
                     comments={covoit.comments}
                     active={covoit.active}/>);
@@ -49,11 +50,10 @@ export default class CovoitSingle extends React.Component {
     render() {
         return (
             <div>
-                <PrivateHeader title="Your travel"/>
+                <PrivateHeader title="Admin"/>
                 <div>
                     {this.renderCovoitsListItems()}
                 </div>
-                <ChatBox id={this.props.params.id}/>
             </div>
         );
     };

@@ -9,9 +9,10 @@ export default class AddCovoit extends React.Component {
         const to = this.refs.to.value.trim();
         const availablePlaces = this.refs.availablePlaces.value;
         const comments = this.refs.comments.value.trim();
+        const price = this.refs.price.value.trim();
 
         //Calling our secured method to add data to db :
-        Meteor.call('covoits.insert', date, from, to, availablePlaces, comments);
+        Meteor.call('covoits.insert', date, from, to, availablePlaces, comments, price);
 
         this.refs.date.value = "";
         this.refs.from.value = "";
@@ -41,6 +42,10 @@ export default class AddCovoit extends React.Component {
                     <label>
                         Avalible places :
                         <input type="number" ref="availablePlaces" placeholder="Avalible places"/>
+                    </label>
+                    <label>
+                        Price :
+                        <input type="number" ref="price" placeholder="Price"/>
                     </label>
                     <label>
                         Comments :
